@@ -22,9 +22,6 @@ function mergeSort(input) {
     let left   = mergeSort(input.slice(0, middle));
     let right  = mergeSort(input.slice(middle, input.length));
 
-    // NOTE
-    // Recursive call on the left, recursive call on the right,
-    // then stitch them back together.
     input = stitch(left, right, input);
   }
 
@@ -61,9 +58,9 @@ function mergeSort(input) {
 //
 function stitch(left, right, original) {
   let
-    i = 0,  // iterator for A
-    j = 0,  // iterator for B
-    k = 0;  // iterator for original
+    i = 0,  // iterator for left side
+    j = 0,  // iterator for right side
+    k = 0;  // iterator for original array
 
   let
     p = left.length,
@@ -73,28 +70,28 @@ function stitch(left, right, original) {
   // perform the swap either...
   while (i < p && j < q) {
     if (left[i] <= right[j]) {
-      original[k] = left[i]; // ...on the left side, or...
-      i += 1;                // increment i
+      original[k] = left[i]; i += 1;
     }
     else {
-      original[k] = right[j]; // ...on the right side
-      j += 1;                 // increment j
+      original[k] = right[j]; j += 1;
     }
-    k += 1;                   // increment k
+
+    k += 1;
   }
 
-  if (i == p) {
-    for (let x = j, y = k; x < q; x++, y++) {
-      original[y] = right[x];
-    }
+  // If we've performed all the swaps on the left side,
+  // all we need to do is concatenate the right side onto
+  // the output array.
+  if (i === p) {
+    for (; j < q; j++, k++) { original[k] = right[j]; }
   }
   else {
-    for (let x = i, y = k; x < p; x++, y++) {
-      original[y] = left[x];
-    }
+    for (; i < p; i++, k++) { original[k] = left[i]; }
   }
 
   return original;
 }
 
-console.log(mergeSort([5,4,1,3,9]));
+console.log(mergeSort(
+  [3,2,1,5,4]
+));
