@@ -245,3 +245,47 @@ test('delete sets correct next and prev values', t => {
   t.truthy(list.first === node1);
   t.truthy(list.last === node2);
 });
+
+test('it implements the find interface', t => {
+  t.plan(1);
+
+  const list = new LinkedList();
+
+  t.truthy(typeof(list.find) === 'function');
+});
+
+test('find returns node at index', t => {
+  t.plan(1);
+
+  const list = new LinkedList();
+
+  list.push(10);
+  list.push(20);
+  list.push(30);
+
+  const node = list.find(2);
+
+  t.truthy(node.value === 30);
+});
+
+test('it implements the get interface', t => {
+  t.plan(1);
+
+  const list = new LinkedList();
+
+  t.truthy(typeof(list.get) === 'function');
+});
+
+test('find returns value at index', t => {
+  t.plan(1);
+
+  const list = new LinkedList();
+
+  list.push(10);
+  list.push(20);
+  list.push(30);
+
+  const value = list.get(2);
+
+  t.truthy(value === 30);
+});

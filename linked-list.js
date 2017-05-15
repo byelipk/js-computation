@@ -46,6 +46,14 @@ class LinkedList {
     }
   }
 
+  get(index) {
+    const node = this.find(index);
+
+    if (node) {
+      return node.value;
+    }
+  }
+
   find(index) {
     let current = this.first;
 
