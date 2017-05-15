@@ -1,8 +1,17 @@
 {
+  "name": "js-computation",
+  "version": "0.0.0",
   "scripts": {
-    "test": "ava"
+    "build": "babel src -d lib",
+    "test": "ava ./tests --verbose"
   },
   "devDependencies": {
-    "ava": "^0.19.1"
+    "ava": "^0.19.1",
+    "babel-cli": "^6.24.1",
+    "babel-plugin-syntax-async-functions": "^6.13.0",
+    "babel-preset-env": "^1.4.0"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.23.0"
   }
 }
